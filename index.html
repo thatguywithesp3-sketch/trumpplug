@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="aurum">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0B0A08" />
+
+  <title>AURUM — The Executive · 24K Collectible Bust (Limited to 20)</title>
+  <meta name="description" content="A solid-feeling, 24-karat-finished collectible bust of the 45th &amp; 47th. Hand-finished. Numbered. Absurdly heavy. Limited to 20 pieces worldwide — then the mold is destroyed." />
+
+  <!-- Open Graph / social -->
+  <meta property="og:type" content="product" />
+  <meta property="og:title" content="AURUM — The Executive · 24K Collectible Bust" />
+  <meta property="og:description" content="It does nothing. Magnificently. In gold. Limited to 20 pieces." />
+  <meta property="og:image" content="assets/og.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+
+  <!-- Fonts: display grotesque + industrial mono + luxury serif garnish -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Playfair+Display:ital,wght@1,700;1,900&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ────────────────────────────────────────────────────────────────────
+       SVG SPRITE — gradients + reusable figures (bust / seal / box)
+       Swap these for production photography by replacing the <use> targets
+       in the hero & gallery with <img> tags (see assets/README.md).
+       ──────────────────────────────────────────────────────────────────── -->
+  <svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+    <defs>
+      <!-- Metallic gold: multi-stop with an off-centre highlight band -->
+      <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%"  stop-color="#6E4E16" />
+        <stop offset="28%" stop-color="#B8893B" />
+        <stop offset="46%" stop-color="#F4E6B0" />
+        <stop offset="58%" stop-color="#E7C667" />
+        <stop offset="78%" stop-color="#A9772C" />
+        <stop offset="100%" stop-color="#6E4E16" />
+      </linearGradient>
+      <linearGradient id="goldRim" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#FBEFC0" />
+        <stop offset="100%" stop-color="#9A6F26" />
+      </linearGradient>
+      <linearGradient id="obsidian" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#26241F" />
+        <stop offset="100%" stop-color="#0C0B09" />
+      </linearGradient>
+      <radialGradient id="halo" cx="50%" cy="42%" r="60%">
+        <stop offset="0%"  stop-color="rgba(244,226,161,0.55)" />
+        <stop offset="45%" stop-color="rgba(201,162,75,0.18)" />
+        <stop offset="100%" stop-color="rgba(201,162,75,0)" />
+      </radialGradient>
+
+      <!-- ── The bust (stylised gold profile, facing right) ── -->
+      <symbol id="bust" viewBox="0 0 440 560">
+        <!-- floor reflection -->
+        <ellipse cx="220" cy="512" rx="150" ry="20" fill="rgba(201,162,75,0.18)" />
+        <!-- pedestal -->
+        <path d="M126 500 L150 436 L290 436 L314 500 Z" fill="url(#obsidian)" stroke="rgba(201,162,75,0.45)" stroke-width="1.5" />
+        <path d="M150 436 L290 436 L286 446 L154 446 Z" fill="url(#goldRim)" opacity="0.85" />
+        <!-- neck -->
+        <path d="M182 300 C180 340 176 380 178 436 L268 436 C266 384 270 344 266 300 Z" fill="url(#gold)" />
+        <!-- head + iconic forward hair swoosh (single stylised silhouette) -->
+        <path d="M178 436
+                 L172 332
+                 C162 300 150 268 156 232
+                 C159 188 160 150 184 120
+                 C194 104 210 92 234 90
+                 C272 86 312 88 340 108
+                 C360 120 362 134 348 142
+                 C332 150 312 147 304 160
+                 C300 178 304 192 300 208
+                 C298 215 304 220 312 224
+                 C332 234 352 250 344 266
+                 C338 276 322 273 316 280
+                 C310 286 314 294 307 301
+                 C316 308 318 324 300 336
+                 C289 343 278 345 264 350
+                 C244 360 224 360 212 368
+                 C201 375 197 400 201 432
+                 L204 436 Z"
+              fill="url(#gold)" />
+        <!-- engraved shadow on the back/under planes -->
+        <path d="M178 436 L172 332 C162 300 150 268 156 232 C159 188 160 150 184 120 C176 170 176 250 186 320 C190 372 188 408 196 436 Z"
+              fill="rgba(20,14,2,0.40)" />
+        <!-- brow + lip relief, kept minimal -->
+        <path d="M300 210 q14 4 20 12" fill="none" stroke="rgba(40,26,4,0.45)" stroke-width="3" stroke-linecap="round" />
+        <path d="M300 294 q9 3 12 0" fill="none" stroke="rgba(40,26,4,0.45)" stroke-width="3" stroke-linecap="round" />
+        <!-- bright rim highlight along the face -->
+        <path d="M340 108 C360 120 362 134 348 142 C332 150 312 147 304 160 C300 178 304 192 300 208 C312 222 340 240 344 266"
+              fill="none" stroke="rgba(255,250,224,0.6)" stroke-width="2.5" stroke-linecap="round" />
+      </symbol>
+
+      <!-- ── Certificate seal ── -->
+      <symbol id="seal" viewBox="0 0 440 560">
+        <rect x="70" y="120" width="300" height="320" rx="6" fill="#15130E" stroke="rgba(201,162,75,0.4)" stroke-width="1.5" />
+        <rect x="86" y="136" width="268" height="288" rx="4" fill="none" stroke="rgba(201,162,75,0.25)" stroke-width="1" />
+        <text x="220" y="186" text-anchor="middle" fill="url(#goldRim)" font-family="'Space Mono', monospace" font-size="15" letter-spacing="3">CERTIFICATE</text>
+        <text x="220" y="208" text-anchor="middle" fill="rgba(245,243,238,0.45)" font-family="'Space Mono', monospace" font-size="10" letter-spacing="4">OF AUTHENTICITY</text>
+        <circle cx="220" cy="300" r="58" fill="none" stroke="url(#gold)" stroke-width="3" />
+        <circle cx="220" cy="300" r="44" fill="none" stroke="rgba(201,162,75,0.4)" stroke-width="1" />
+        <text x="220" y="296" text-anchor="middle" fill="url(#gold)" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="13">No.</text>
+        <text x="220" y="320" text-anchor="middle" fill="url(#goldRim)" font-family="'Space Mono', monospace" font-weight="700" font-size="22">17</text>
+        <text x="220" y="392" text-anchor="middle" fill="rgba(245,243,238,0.4)" font-family="'Space Mono', monospace" font-size="10" letter-spacing="3">/ 20</text>
+      </symbol>
+
+      <!-- ── Presentation box ── -->
+      <symbol id="box" viewBox="0 0 440 560">
+        <ellipse cx="220" cy="486" rx="150" ry="18" fill="rgba(201,162,75,0.12)" />
+        <path d="M96 250 L344 250 L344 430 L96 430 Z" fill="#100E0A" stroke="rgba(201,162,75,0.35)" stroke-width="1.5" />
+        <path d="M96 250 L150 200 L398 200 L344 250 Z" fill="#1B1813" stroke="rgba(201,162,75,0.3)" stroke-width="1.5" />
+        <path d="M344 250 L398 200 L398 380 L344 430 Z" fill="#0A0907" stroke="rgba(201,162,75,0.25)" stroke-width="1.5" />
+        <!-- lid embossed monogram -->
+        <text x="234" y="232" text-anchor="middle" fill="url(#gold)" font-family="'Playfair Display', serif" font-style="italic" font-weight="900" font-size="30">A</text>
+        <!-- gold ribbon -->
+        <rect x="208" y="200" width="20" height="230" fill="rgba(201,162,75,0.22)" />
+        <rect x="252" y="206" width="16" height="224" fill="rgba(10,9,7,0.4)" />
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- ── Announcement bar ── -->
+  <div class="announce" id="announce">
+    <div class="announce__track">
+      <span>LIMITED DROP — 20 PIECES WORLDWIDE</span><span class="dot">●</span>
+      <span>FREE INSURED WORLDWIDE SHIPPING</span><span class="dot">●</span>
+      <span>NUMBERED &amp; SEALED</span><span class="dot">●</span>
+      <span>THEN THE MOLD IS DESTROYED</span><span class="dot">●</span>
+      <span>LIMITED DROP — 20 PIECES WORLDWIDE</span><span class="dot">●</span>
+      <span>FREE INSURED WORLDWIDE SHIPPING</span><span class="dot">●</span>
+      <span>NUMBERED &amp; SEALED</span><span class="dot">●</span>
+      <span>THEN THE MOLD IS DESTROYED</span><span class="dot">●</span>
+    </div>
+  </div>
+
+  <!-- ── Sticky nav ── -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a class="nav__brand" href="#top" aria-label="AURUM — home">
+        <span class="nav__mark">A</span>
+        <span class="nav__word">AURUM</span>
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="#overview">Overview</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#spec">Spec</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <div class="nav__cta">
+        <span class="nav__price"><span data-price-dollars>$179</span><sup data-price-cents>.45</sup></span>
+        <a class="btn btn--gold" href="#order">Reserve</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ─────────────── HERO ─────────────── -->
+    <section class="hero" id="hero">
+      <div class="hero__glow" aria-hidden="true"></div>
+      <div class="hero__grid container">
+        <div class="hero__copy reveal">
+          <p class="eyebrow">A solid-gold mistake — limited to 20</p>
+          <h1 class="hero__title">
+            THE <span class="gold-text">GOLD</span><br />
+            STANDARD<span class="serif-mark">.</span>
+          </h1>
+          <p class="hero__lede">
+            A 24-karat-finished collectible bust of the 45th &amp; 47th.
+            Hand-finished. Numbered. Reassuringly heavy.
+            <span class="hero__lede-strong">It does nothing — magnificently.</span>
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn--gold btn--lg magnetic" href="#order">Claim your number</a>
+            <a class="btn btn--ghost btn--lg" href="#gallery">See every angle</a>
+          </div>
+          <div class="hero__meta">
+            <div class="hero__meta-item">
+              <span class="hero__meta-num gold-text">20</span>
+              <span class="hero__meta-label">Total mintage</span>
+            </div>
+            <div class="hero__meta-item">
+              <span class="hero__meta-num gold-text" data-remaining>3</span>
+              <span class="hero__meta-label">Pieces remaining</span>
+            </div>
+            <div class="hero__meta-item">
+              <span class="hero__meta-num gold-text">24K</span>
+              <span class="hero__meta-label">Mirror finish</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero__stage reveal" data-parallax>
+          <figure class="figure figure--hero" data-photo="hero">
+            <svg class="bust" viewBox="0 0 440 560" role="img" aria-label="Gold collectible bust, three-quarter view">
+              <use href="#bust" />
+            </svg>
+            <span class="figure__glare" aria-hidden="true"></span>
+          </figure>
+          <p class="figure__caption">Concept render — production photography arriving</p>
+        </div>
+      </div>
+
+      <a class="hero__scroll" href="#overview" aria-label="Scroll to overview">
+        <span></span>
+      </a>
+    </section>
+
+    <!-- ─────────────── MARQUEE ─────────────── -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>SOLID&nbsp;GOLD&nbsp;FINISH</span><span class="marquee__star">✦</span>
+        <span>LIMITED&nbsp;TO&nbsp;20</span><span class="marquee__star">✦</span>
+        <span>NUMBERED&nbsp;EDITION</span><span class="marquee__star">✦</span>
+        <span>NEVER&nbsp;AGAIN</span><span class="marquee__star">✦</span>
+        <span>MAKE&nbsp;YOUR&nbsp;MANTELPIECE&nbsp;GREAT&nbsp;AGAIN</span><span class="marquee__star">✦</span>
+        <span>SOLID&nbsp;GOLD&nbsp;FINISH</span><span class="marquee__star">✦</span>
+        <span>LIMITED&nbsp;TO&nbsp;20</span><span class="marquee__star">✦</span>
+        <span>NUMBERED&nbsp;EDITION</span><span class="marquee__star">✦</span>
+        <span>NEVER&nbsp;AGAIN</span><span class="marquee__star">✦</span>
+        <span>MAKE&nbsp;YOUR&nbsp;MANTELPIECE&nbsp;GREAT&nbsp;AGAIN</span><span class="marquee__star">✦</span>
+      </div>
+    </div>
+
+    <!-- ─────────────── OVERVIEW / PITCH ─────────────── -->
+    <section class="overview section" id="overview">
+      <div class="container">
+        <p class="eyebrow reveal">The pitch</p>
+        <h2 class="overview__statement reveal">
+          A monument to <span class="serif-em">excess</span>, cast for the mantelpiece.
+          Treated with total seriousness, because <span class="gold-text">the joke is the gravity</span>.
+        </h2>
+        <div class="pillars">
+          <div class="pillar reveal">
+            <span class="pillar__no">01</span>
+            <h3>Hand-finished</h3>
+            <p>Each bust is polished to a mirror by hand, then sealed. No two highlights fall the same way.</p>
+          </div>
+          <div class="pillar reveal">
+            <span class="pillar__no">02</span>
+            <h3>Numbered for life</h3>
+            <p>You won't own a figurine. You'll own a number — struck into the base, logged on its certificate.</p>
+          </div>
+          <div class="pillar reveal">
+            <span class="pillar__no">03</span>
+            <h3>Then it's gone</h3>
+            <p>20 pieces, worldwide. When the last ships, the mold is destroyed. On camera.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────── GALLERY ─────────────── -->
+    <section class="gallery section" id="gallery">
+      <div class="container">
+        <div class="section__head">
+          <div>
+            <p class="eyebrow reveal">The object</p>
+            <h2 class="section__title reveal">Every angle of the asset</h2>
+          </div>
+          <p class="section__note reveal">Tap any frame to enlarge.</p>
+        </div>
+
+        <div class="gallery__grid">
+          <button class="shot reveal" data-shot data-label="Three-quarter view" style="--i:0">
+            <svg class="bust" viewBox="0 0 440 560" role="img" aria-label="Three-quarter view"><use href="#bust" /></svg>
+            <span class="shot__tag">Three-quarter</span>
+          </button>
+          <button class="shot reveal" data-shot data-label="Profile" style="--i:1">
+            <svg class="bust flip" viewBox="0 0 440 560" role="img" aria-label="Profile view"><use href="#bust" /></svg>
+            <span class="shot__tag">Profile</span>
+          </button>
+          <button class="shot reveal" data-shot data-label="Mirror-finish detail" style="--i:2">
+            <svg class="bust zoom" viewBox="0 0 440 560" role="img" aria-label="Finish detail"><use href="#bust" /></svg>
+            <span class="shot__tag">Finish detail</span>
+          </button>
+          <button class="shot reveal" data-shot data-label="On the obsidian stand" style="--i:3">
+            <svg class="bust" viewBox="0 0 440 560" role="img" aria-label="On the stand"><use href="#bust" /></svg>
+            <span class="shot__tag">On the stand</span>
+          </button>
+          <button class="shot reveal" data-shot data-label="Certificate of authenticity" style="--i:4">
+            <svg class="bust" viewBox="0 0 440 560" role="img" aria-label="Certificate"><use href="#seal" /></svg>
+            <span class="shot__tag">Certificate</span>
+          </button>
+          <button class="shot reveal" data-shot data-label="Presentation box" style="--i:5">
+            <svg class="bust" viewBox="0 0 440 560" role="img" aria-label="Presentation box"><use href="#box" /></svg>
+            <span class="shot__tag">Presentation box</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────── FEATURES ─────────────── -->
+    <section class="features section">
+      <div class="container">
+        <div class="feature reveal">
+          <div class="feature__media">
+            <figure class="figure figure--feature" data-photo="finish">
+              <svg class="bust zoom" viewBox="0 0 440 560" role="img" aria-label="Mirror finish"><use href="#bust" /></svg>
+              <span class="figure__glare" aria-hidden="true"></span>
+            </figure>
+          </div>
+          <div class="feature__text">
+            <p class="eyebrow">The finish</p>
+            <h3 class="feature__title">A mirror you can hold.</h3>
+            <p>24-karat gold electroplate over a solid resin core, polished by hand until your reflection bends across it. Non-porous. Tarnish-resistant. Catches a room's light from across it.</p>
+            <ul class="ticks">
+              <li>Hand-polished mirror finish</li>
+              <li>24K electroplate, sealed</li>
+              <li>Brushed-obsidian display base</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="feature feature--reverse reveal">
+          <div class="feature__media">
+            <figure class="figure figure--feature" data-photo="certificate">
+              <svg class="bust" viewBox="0 0 440 560" role="img" aria-label="Numbered certificate"><use href="#seal" /></svg>
+            </figure>
+          </div>
+          <div class="feature__text">
+            <p class="eyebrow">The provenance</p>
+            <h3 class="feature__title">Numbered. Sealed. Logged.</h3>
+            <p>Every bust ships with a hand-stamped certificate matching the number struck into its base — registered in the edition ledger. Verifiable. Unrepeatable.</p>
+            <ul class="ticks">
+              <li>Edition number on base &amp; certificate</li>
+              <li>Wax-style authenticity seal</li>
+              <li>Logged in the 20 ledger</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="feature reveal">
+          <div class="feature__media">
+            <figure class="figure figure--feature" data-photo="box">
+              <svg class="bust" viewBox="0 0 440 560" role="img" aria-label="Presentation box"><use href="#box" /></svg>
+            </figure>
+          </div>
+          <div class="feature__text">
+            <p class="eyebrow">The unboxing</p>
+            <h3 class="feature__title">Arrives like it matters.</h3>
+            <p>Gloss-black presentation box, gold-ribboned, monogram-embossed. Inside: the bust on its velvet cradle, the certificate, a signed card, and a pair of cotton gloves you'll absolutely use.</p>
+            <ul class="ticks">
+              <li>Gloss-black, gold-ribboned box</li>
+              <li>Velvet cradle &amp; cotton gloves</li>
+              <li>Signed presentation card</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────── SPEC SHEET ─────────────── -->
+    <section class="spec section" id="spec">
+      <div class="container">
+        <p class="eyebrow reveal">The numbers</p>
+        <h2 class="section__title reveal">Engineered, allegedly.</h2>
+        <dl class="spec__sheet reveal">
+          <div class="spec__row"><dt>Material</dt><dd>24K gold electroplate over solid resin core</dd></div>
+          <div class="spec__row"><dt>Finish</dt><dd>Hand-polished mirror, sealed &amp; tarnish-resistant</dd></div>
+          <div class="spec__row"><dt>Height</dt><dd>110 mm</dd></div>
+          <div class="spec__row"><dt>Weight</dt><dd>480 g — reassuringly, suspiciously heavy</dd></div>
+          <div class="spec__row"><dt>Base</dt><dd>Brushed obsidian, felt-footed</dd></div>
+          <div class="spec__row"><dt>Edition</dt><dd>20 pieces, numbered — then retired</dd></div>
+          <div class="spec__row"><dt>In the box</dt><dd>Bust · certificate · stand · signed card · gloves</dd></div>
+          <div class="spec__row"><dt>Origin</dt><dd>Cast &amp; finished by hand</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ─────────────── SCARCITY ─────────────── -->
+    <section class="scarcity section">
+      <div class="scarcity__glow" aria-hidden="true"></div>
+      <div class="container scarcity__inner reveal">
+        <p class="eyebrow">Once they're gone, they're gone</p>
+        <h2 class="scarcity__title">We mean it — <span class="serif-em">we're melting the mold on camera.</span></h2>
+
+        <div class="counter">
+          <div class="counter__bar"><span class="counter__fill" data-fill></span></div>
+          <div class="counter__legend">
+            <span><strong class="gold-text" data-claimed>17</strong> claimed</span>
+            <span class="counter__state" data-state>Going fast</span>
+            <span><strong class="gold-text" data-remaining>3</strong> of 20 remaining</span>
+          </div>
+        </div>
+
+        <p class="scarcity__sub">Reservation closes in</p>
+        <div class="countdown" data-countdown aria-live="polite">
+          <div class="countdown__unit"><span data-d>00</span><label>Days</label></div>
+          <span class="countdown__sep">:</span>
+          <div class="countdown__unit"><span data-h>00</span><label>Hrs</label></div>
+          <span class="countdown__sep">:</span>
+          <div class="countdown__unit"><span data-m>00</span><label>Min</label></div>
+          <span class="countdown__sep">:</span>
+          <div class="countdown__unit"><span data-s>00</span><label>Sec</label></div>
+        </div>
+
+        <a class="btn btn--gold btn--lg magnetic" href="#order">Reserve before the mold dies</a>
+      </div>
+    </section>
+
+    <!-- ─────────────── ORDER ─────────────── -->
+    <section class="order section" id="order">
+      <div class="container order__grid">
+        <div class="order__pitch reveal">
+          <p class="eyebrow">Claim your number</p>
+          <h2 class="section__title">Absurdly priced.<br />Reassuringly final.</h2>
+          <p class="order__blurb">One price. One number. One mold, soon to be scrap. Reserve now — settle the balance when your edition number is assigned. No charge today.</p>
+          <ul class="ticks ticks--lg">
+            <li>Free insured worldwide shipping</li>
+            <li>Discreet, unmarked outer packaging</li>
+            <li>30-day returns on unopened editions</li>
+            <li>Certificate &amp; edition number guaranteed</li>
+          </ul>
+        </div>
+
+        <div class="card reveal">
+          <div class="card__head">
+            <span class="card__badge">Edition · 20</span>
+            <h3 class="card__name">The Executive — 24K</h3>
+            <p class="card__tagline">Solid-gold finish · numbered · sealed</p>
+          </div>
+          <div class="card__price">
+            <span class="card__cur">$</span><span class="card__amount" data-price-amount>179</span><span class="card__cents" data-price-cents>.45</span>
+            <span class="card__each">/ piece</span>
+          </div>
+
+          <form class="card__form" id="reserveForm" novalidate>
+            <div class="qty">
+              <span class="qty__label">Quantity</span>
+              <div class="qty__control">
+                <button type="button" class="qty__btn" data-qty="-1" aria-label="Decrease quantity">–</button>
+                <span class="qty__value" data-qty-value>1</span>
+                <button type="button" class="qty__btn" data-qty="1" aria-label="Increase quantity">+</button>
+              </div>
+            </div>
+            <label class="field">
+              <span class="field__label">Email for your reservation</span>
+              <input type="email" name="email" required placeholder="you@example.com" autocomplete="email" />
+            </label>
+            <button type="submit" class="btn btn--gold btn--block btn--lg">
+              <span data-cta-verb>Reserve</span> <span data-total>1</span> · <span data-grand>$179.45</span>
+            </button>
+            <p class="card__fine">No charge today. We email your edition number, then the balance link.</p>
+          </form>
+
+          <div class="card__success" data-success hidden>
+            <span class="card__check">✓</span>
+            <h4>Reservation held.</h4>
+            <p>Edition <strong class="gold-text" data-assigned>No. 18</strong> is yours for the next 30 minutes. Check your inbox to confirm.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────── FAQ ─────────────── -->
+    <section class="faq section" id="faq">
+      <div class="container">
+        <p class="eyebrow reveal">Reasonable questions</p>
+        <h2 class="section__title reveal">The fine print, dryly.</h2>
+
+        <div class="accordion reveal">
+          <details class="acc">
+            <summary>Is this a joke?<span class="acc__icon" aria-hidden="true"></span></summary>
+            <div class="acc__body"><p>The figurine isn't. The price is debatable. It's a genuine, hand-finished collectible — produced once, in a numbered run of 20, then retired forever.</p></div>
+          </details>
+          <details class="acc">
+            <summary>Is it actually functional?<span class="acc__icon" aria-hidden="true"></span></summary>
+            <div class="acc__body"><p>It functions as a magnificent paperweight, conversation-ender, and mantelpiece centrepiece. Body-safe, non-porous seal; flared display base. Beyond that, we decline to elaborate — and so, tastefully, should you.</p></div>
+          </details>
+          <details class="acc">
+            <summary>Is it really gold?<span class="acc__icon" aria-hidden="true"></span></summary>
+            <div class="acc__body"><p>24-karat gold electroplate over a solid resin core, hand-polished to a mirror and sealed. The weight is real. The shine is real. The restraint is not included.</p></div>
+          </details>
+          <details class="acc">
+            <summary>What does "limited to 20" mean?<span class="acc__icon" aria-hidden="true"></span></summary>
+            <div class="acc__body"><p>Exactly 20 pieces will ever exist. Each is numbered on its base and certificate. When the final piece ships, the mold is destroyed on camera. There is no second run.</p></div>
+          </details>
+          <details class="acc">
+            <summary>How does shipping work?<span class="acc__icon" aria-hidden="true"></span></summary>
+            <div class="acc__body"><p>Free, fully insured, worldwide — in discreet, unmarked outer packaging. Reservations ship in the order numbers are assigned. You'll get tracking the moment yours leaves the studio.</p></div>
+          </details>
+          <details class="acc">
+            <summary>Returns?<span class="acc__icon" aria-hidden="true"></span></summary>
+            <div class="acc__body"><p>30 days on unopened editions. Open it and you've accepted your number into your life. We think you'll keep it.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────── FINAL CTA ─────────────── -->
+    <section class="final section">
+      <div class="final__glow" aria-hidden="true"></div>
+      <div class="container final__inner reveal">
+        <h2 class="final__title">20 pieces.<br /><span class="gold-text">Then the mold dies.</span></h2>
+        <p class="final__sub">It does nothing. Magnificently. In gold.</p>
+        <a class="btn btn--gold btn--xl magnetic" href="#order">Claim your number — <span data-price-full>$179.45</span></a>
+        <p class="final__note">Free insured worldwide shipping · numbered &amp; sealed · no charge today</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ─────────────── FOOTER ─────────────── -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <span class="nav__mark">A</span>
+        <div>
+          <p class="footer__word">AURUM</p>
+          <p class="footer__line">Maison of magnificent mistakes.</p>
+        </div>
+      </div>
+      <div class="footer__cols">
+        <div class="footer__col">
+          <p class="footer__h">Object</p>
+          <a href="#overview">Overview</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#spec">Spec sheet</a>
+          <a href="#order">Reserve</a>
+        </div>
+        <div class="footer__col">
+          <p class="footer__h">Care</p>
+          <a href="#faq">FAQ</a>
+          <a href="#order">Shipping</a>
+          <a href="#order">Returns</a>
+          <a href="mailto:hello@aurum.example">Contact</a>
+        </div>
+        <div class="footer__col footer__col--news">
+          <p class="footer__h">Be told when the mold dies</p>
+          <form class="news" id="newsForm">
+            <input type="email" placeholder="you@example.com" aria-label="Email" required />
+            <button class="btn btn--ghost" type="submit">Notify me</button>
+          </form>
+          <p class="footer__news-note" data-news-note></p>
+        </div>
+      </div>
+    </div>
+    <div class="container footer__base">
+      <p>© 2026 AURUM (a parody maison). A satirical novelty collectible. Not affiliated with, endorsed by, or representing any public figure, office, or campaign.</p>
+      <p>Made with questionable taste &amp; excellent spacing.</p>
+    </div>
+  </footer>
+
+  <!-- ─────────────── LIGHTBOX ─────────────── -->
+  <div class="lightbox" data-lightbox hidden>
+    <button class="lightbox__close" data-lb-close aria-label="Close">✕</button>
+    <button class="lightbox__nav lightbox__nav--prev" data-lb-prev aria-label="Previous">‹</button>
+    <figure class="lightbox__stage">
+      <div class="lightbox__media" data-lb-media></div>
+      <figcaption class="lightbox__cap" data-lb-cap></figcaption>
+    </figure>
+    <button class="lightbox__nav lightbox__nav--next" data-lb-next aria-label="Next">›</button>
+  </div>
+
+  <!-- ─────────────── TOAST ─────────────── -->
+  <div class="toast" data-toast hidden></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
