@@ -36,6 +36,7 @@
   --font-display:  'Space Grotesk', system-ui, sans-serif;
   --font-mono:     'Space Mono', ui-monospace, monospace;
   --font-serif:    'Playfair Display', Georgia, serif;
+  --font-title:    'Cinzel', 'Playfair Display', serif;   /* Trajan-style Roman caps */
 
   /* Fluid type scale */
   --fs-hero:   clamp(2.75rem, 8.5vw, 7.5rem);
@@ -485,6 +486,21 @@ ul { list-style: none; }
 .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s cubic-bezier(.2,.8,.2,1), transform .7s cubic-bezier(.2,.8,.2,1); }
 .reveal.is-in { opacity: 1; transform: none; }
 .gallery__grid .shot { transition-delay: calc(var(--i, 0) * 70ms); }
+
+/* ─── Title face — Cinzel (classical Roman capitals, à la Trajan) ────── */
+.hero__title,
+.section__title,
+.feature__title,
+.scarcity__title,
+.final__title,
+.card__name,
+.pillar h3 {
+  font-family: var(--font-title);
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+.hero__title { letter-spacing: 0.035em; }   /* huge display wants tighter tracking */
 
 /* ════════════════════════════════════════════════════════════════════
    RESPONSIVE
