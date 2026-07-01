@@ -124,21 +124,7 @@
     </defs>
   </svg>
 
-  <!-- ── Announcement bar ── -->
-  <div class="announce" id="announce">
-    <div class="announce__track">
-      <span>LIMITED DROP — 20 PIECES WORLDWIDE</span><span class="dot">●</span>
-      <span>FREE INSURED WORLDWIDE SHIPPING</span><span class="dot">●</span>
-      <span>NUMBERED &amp; SEALED</span><span class="dot">●</span>
-      <span>THEN THE MOLD IS DESTROYED</span><span class="dot">●</span>
-      <span>LIMITED DROP — 20 PIECES WORLDWIDE</span><span class="dot">●</span>
-      <span>FREE INSURED WORLDWIDE SHIPPING</span><span class="dot">●</span>
-      <span>NUMBERED &amp; SEALED</span><span class="dot">●</span>
-      <span>THEN THE MOLD IS DESTROYED</span><span class="dot">●</span>
-    </div>
-  </div>
-
-  <!-- ── Sticky nav ── -->
+  <!-- ── Translucent nav (overlays hero) ── -->
   <header class="nav" id="nav">
     <div class="nav__inner">
       <a class="nav__brand" href="#top" aria-label="AURUM — home">
@@ -152,7 +138,7 @@
         <a href="#faq">FAQ</a>
       </nav>
       <div class="nav__cta">
-        <span class="nav__price"><span data-price-dollars>$179</span><sup data-price-cents>.45</sup></span>
+        <span class="nav__price"><span data-price-dollars>$999</span><sup data-price-cents></sup></span>
         <a class="btn btn--gold" href="#order">Reserve</a>
       </div>
     </div>
@@ -162,7 +148,18 @@
 
     <!-- ─────────────── HERO ─────────────── -->
     <section class="hero" id="hero">
-      <div class="hero__glow" aria-hidden="true"></div>
+      <!-- Full-bleed background (parallax). Falls back to the SVG bust if
+           assets/hero-bg.jpg is absent — see CONFIG.photos.heroBg in script.js -->
+      <div class="hero__bg" data-photo="hero-bg" data-parallax aria-hidden="true">
+        <div class="hero__fallback">
+          <div class="hero__glow"></div>
+          <svg class="bust" viewBox="0 0 440 560" role="img" aria-label="Gold collectible bust">
+            <use href="#bust" />
+          </svg>
+        </div>
+      </div>
+      <div class="hero__scrim" aria-hidden="true"></div>
+
       <div class="hero__grid container">
         <div class="hero__copy reveal">
           <p class="eyebrow">A solid-gold mistake — limited to 20</p>
@@ -170,45 +167,37 @@
             THE <span class="gold-text">GOLD</span><br />
             STANDARD<span class="serif-mark">.</span>
           </h1>
-          <p class="hero__lede">
-            A 24-karat-finished collectible bust of the 45th &amp; 47th.
-            Hand-finished. Numbered. Reassuringly heavy.
-            <span class="hero__lede-strong">It does nothing — magnificently.</span>
-          </p>
-          <div class="hero__actions">
-            <a class="btn btn--gold btn--lg magnetic" href="#order">Claim your number</a>
-            <a class="btn btn--ghost btn--lg" href="#gallery">See every angle</a>
-          </div>
-          <div class="hero__meta">
-            <div class="hero__meta-item">
-              <span class="hero__meta-num gold-text">20</span>
-              <span class="hero__meta-label">Total mintage</span>
-            </div>
-            <div class="hero__meta-item">
-              <span class="hero__meta-num gold-text" data-remaining>3</span>
-              <span class="hero__meta-label">Pieces remaining</span>
-            </div>
-            <div class="hero__meta-item">
-              <span class="hero__meta-num gold-text">24K</span>
-              <span class="hero__meta-label">Mirror finish</span>
+          <div class="hero__lead">
+            <p class="hero__lede">A 24-karat-finished collectible bust of the 45th &amp; 47th — hand-finished, numbered, reassuringly heavy.</p>
+            <div class="hero__actions">
+              <a class="btn btn--gold btn--lg magnetic" href="#order">Claim your number</a>
+              <a class="btn btn--ghost btn--lg" href="#gallery">See every angle</a>
             </div>
           </div>
-        </div>
-
-        <div class="hero__stage reveal" data-parallax>
-          <figure class="figure figure--hero" data-photo="hero">
-            <svg class="bust" viewBox="0 0 440 560" role="img" aria-label="Gold collectible bust, three-quarter view">
-              <use href="#bust" />
-            </svg>
-            <span class="figure__glare" aria-hidden="true"></span>
-          </figure>
-          <p class="figure__caption">Concept render — production photography arriving</p>
         </div>
       </div>
 
       <a class="hero__scroll" href="#overview" aria-label="Scroll to overview">
         <span></span>
       </a>
+    </section>
+
+    <!-- ─────────────── METADATA BAND ─────────────── -->
+    <section class="metaband" aria-label="Edition details">
+      <div class="container metaband__inner">
+        <div class="metaband__item">
+          <span class="metaband__num">20</span>
+          <span class="metaband__label">Total mintage</span>
+        </div>
+        <div class="metaband__item">
+          <span class="metaband__num" data-remaining>3</span>
+          <span class="metaband__label">Pieces remaining</span>
+        </div>
+        <div class="metaband__item">
+          <span class="metaband__num">24K</span>
+          <span class="metaband__label">Mirror finish</span>
+        </div>
+      </div>
     </section>
 
     <!-- ─────────────── MARQUEE ─────────────── -->
@@ -230,6 +219,7 @@
     <!-- ─────────────── OVERVIEW / PITCH ─────────────── -->
     <section class="overview section" id="overview">
       <div class="container">
+        <span class="section__index reveal">01</span>
         <p class="eyebrow reveal">The pitch</p>
         <h2 class="overview__statement reveal">
           A monument to <span class="serif-em">excess</span>, cast for the mantelpiece.
@@ -260,6 +250,7 @@
       <div class="container">
         <div class="section__head">
           <div>
+            <span class="section__index reveal">02</span>
             <p class="eyebrow reveal">The object</p>
             <h2 class="section__title reveal">Every angle of the asset</h2>
           </div>
@@ -358,6 +349,7 @@
     <!-- ─────────────── SPEC SHEET ─────────────── -->
     <section class="spec section" id="spec">
       <div class="container">
+        <span class="section__index reveal">03</span>
         <p class="eyebrow reveal">The numbers</p>
         <h2 class="section__title reveal">Engineered, allegedly.</h2>
         <dl class="spec__sheet reveal">
@@ -408,6 +400,7 @@
     <section class="order section" id="order">
       <div class="container order__grid">
         <div class="order__pitch reveal">
+          <span class="section__index reveal">04</span>
           <p class="eyebrow">Claim your number</p>
           <h2 class="section__title">Absurdly priced.<br />Reassuringly final.</h2>
           <p class="order__blurb">One price. One number. One mold, soon to be scrap. Reserve now — settle the balance when your edition number is assigned. No charge today.</p>
@@ -426,7 +419,7 @@
             <p class="card__tagline">Solid-gold finish · numbered · sealed</p>
           </div>
           <div class="card__price">
-            <span class="card__cur">$</span><span class="card__amount" data-price-amount>179</span><span class="card__cents" data-price-cents>.45</span>
+            <span class="card__cur">$</span><span class="card__amount" data-price-amount>999</span><span class="card__cents" data-price-cents></span>
             <span class="card__each">/ piece</span>
           </div>
 
@@ -444,7 +437,7 @@
               <input type="email" name="email" required placeholder="you@example.com" autocomplete="email" />
             </label>
             <button type="submit" class="btn btn--gold btn--block btn--lg">
-              <span data-cta-verb>Reserve</span> <span data-total>1</span> · <span data-grand>$179.45</span>
+              <span data-cta-verb>Reserve</span> <span data-total>1</span> · <span data-grand>$999</span>
             </button>
             <p class="card__fine">No charge today. We email your edition number, then the balance link.</p>
           </form>
@@ -461,6 +454,7 @@
     <!-- ─────────────── FAQ ─────────────── -->
     <section class="faq section" id="faq">
       <div class="container">
+        <span class="section__index reveal">05</span>
         <p class="eyebrow reveal">Reasonable questions</p>
         <h2 class="section__title reveal">The fine print, dryly.</h2>
 
@@ -499,7 +493,7 @@
       <div class="container final__inner reveal">
         <h2 class="final__title">20 pieces.<br /><span class="gold-text">Then the mold dies.</span></h2>
         <p class="final__sub">It does nothing. Magnificently. In gold.</p>
-        <a class="btn btn--gold btn--xl magnetic" href="#order">Claim your number — <span data-price-full>$179.45</span></a>
+        <a class="btn btn--gold btn--xl magnetic" href="#order">Claim your number — <span data-price-full>$999</span></a>
         <p class="final__note">Free insured worldwide shipping · numbered &amp; sealed · no charge today</p>
       </div>
     </section>
@@ -561,6 +555,10 @@
   <!-- ─────────────── TOAST ─────────────── -->
   <div class="toast" data-toast hidden></div>
 
+  <!-- Custom lerp cursor -->
+  <div class="cursor" data-cursor aria-hidden="true"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

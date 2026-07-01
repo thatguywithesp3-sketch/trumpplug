@@ -24,7 +24,7 @@ Magnificently. In gold.
 
 **Price**
 ```
-$99.00 USD  ·  one-time
+$999.00 USD  ·  one-time
 ```
 
 **Statement descriptor** (appears on the buyer's card statement, ≤22 chars)

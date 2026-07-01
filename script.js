@@ -8,12 +8,20 @@
   const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* ── Lenis smooth scroll (indigo-laboratory feel) ──────────────────── */
+  let lenis = null;
+  if (window.Lenis && !reduceMotion) {
+    lenis = new Lenis({ lerp: 0.1, wheelMultiplier: 0.85, smoothWheel: true });
+    const raf = (t) => { lenis.raf(t); requestAnimationFrame(raf); };
+    requestAnimationFrame(raf);
+  }
+
   /* ═══════════════════════════════════════════════════════════════════
      COMMERCIAL CONFIG — the single source of truth. Edit these only.
      ═══════════════════════════════════════════════════════════════════ */
   const CONFIG = {
     productName:     'The Executive — 24K',
-    unitPrice:       99,
+    unitPrice:       999,
     currencySymbol:  '$',
     edition:         20,
     remaining:       3,       // pieces left
@@ -28,7 +36,7 @@
     // Drop files in /assets and reference them here. Empty = keep the
     // stylised SVG placeholder for that slot. See assets/README.md.
     photos: {
-      hero:        '',        // e.g. 'assets/product-hero.jpg'
+      heroBg:      'assets/hero-bg.png',  // full-bleed hero background (falls back to SVG bust if missing)
       gallery:     ['', '', '', '', '', ''],  // 6 gallery frames, in order
       finish:      '',        // "A mirror you can hold" feature
       certificate: '',        // "Numbered. Sealed." feature
@@ -78,7 +86,7 @@
     container.appendChild(img);
   }
   const P = CONFIG.photos;
-  mountPhoto($('[data-photo="hero"]'), P.hero, CONFIG.productName, 'contain');
+  mountPhoto($('[data-photo="hero-bg"]'), P.heroBg, CONFIG.productName, 'cover');
   mountPhoto($('[data-photo="finish"]'), P.finish, 'Mirror finish', 'contain');
   mountPhoto($('[data-photo="certificate"]'), P.certificate, 'Certificate of authenticity', 'contain');
   mountPhoto($('[data-photo="box"]'), P.box, 'Presentation box', 'contain');
@@ -103,20 +111,42 @@
     revealEls.forEach((el) => el.classList.add('is-in'));
   }
 
-  /* ── Hero parallax (subtle, pointer + scroll) ──────────────────────── */
-  const stage = $('[data-parallax]');
-  if (stage && !reduceMotion) {
+  /* ── Line-mask heading reveal (split pure-text headings into lines) ─── */
+  function splitLines(el) {
+    if (el.dataset.split || el.querySelector('*')) return;   // pure text only
+    const words = el.textContent.replace(/\s+/g, ' ').trim().split(' ');
+    if (!words[0]) return;
+    el.textContent = '';
+    words.forEach((w, i) => {
+      const mask = document.createElement('span'); mask.className = 'line';
+      const inner = document.createElement('span'); inner.className = 'line__i';
+      inner.style.setProperty('--li', i); inner.textContent = w;
+      mask.appendChild(inner); el.appendChild(mask);
+      if (i < words.length - 1) el.appendChild(document.createTextNode(' '));
+    });
+    el.classList.add('split'); el.dataset.split = '1';
+  }
+  if (!reduceMotion) {
+    const runSplit = () => $$('.section__title, .feature__title').forEach(splitLines);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(runSplit);
+    else runSplit();
+  }
+
+  /* ── Hero background parallax (moves slower than scroll) ────────────── */
+  const heroBg = $('.hero__bg[data-parallax]');
+  if (heroBg && !reduceMotion) {
     let scrollY = 0, px = 0, py = 0, raf = null;
     const apply = () => {
-      stage.style.transform = `translate3d(${px}px, ${scrollY * 0.04 + py}px, 0)`;
+      const y = Math.min(scrollY, window.innerHeight) * 0.45;   // clamp → no edge reveal past the hero
+      heroBg.style.transform = `translate3d(${px}px, ${y + py}px, 0)`;
       raf = null;
     };
     const schedule = () => { if (!raf) raf = requestAnimationFrame(apply); };
     window.addEventListener('scroll', () => { scrollY = window.scrollY; schedule(); }, { passive: true });
     if (window.matchMedia('(pointer:fine)').matches) {
       window.addEventListener('mousemove', (e) => {
-        px = (e.clientX / window.innerWidth - 0.5) * 18;
-        py = (e.clientY / window.innerHeight - 0.5) * 14;
+        px = (e.clientX / window.innerWidth - 0.5) * 10;
+        py = (e.clientY / window.innerHeight - 0.5) * 8;
         schedule();
       });
     }
@@ -129,10 +159,33 @@
         const r = btn.getBoundingClientRect();
         const x = e.clientX - r.left - r.width / 2;
         const y = e.clientY - r.top - r.height / 2;
-        btn.style.transform = `translate(${x * 0.22}px, ${y * 0.28}px)`;
+        btn.style.transform = `translate(${x * 0.12}px, ${y * 0.16}px)`;
       });
       btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
     });
+  }
+
+  /* ── Custom lerp cursor (desktop, pointer-fine) ────────────────────── */
+  const cursorEl = $('[data-cursor]');
+  if (cursorEl && window.matchMedia('(pointer:fine)').matches && !reduceMotion) {
+    document.body.classList.add('has-cursor');
+    let tx = window.innerWidth / 2, ty = window.innerHeight / 2, cx = tx, cy = ty, active = false;
+    window.addEventListener('mousemove', (e) => {
+      tx = e.clientX; ty = e.clientY;
+      if (!active) { active = true; cursorEl.classList.add('is-active'); }
+    }, { passive: true });
+    const hoverSel = 'a, button, summary, .shot, [data-shot], .magnetic';
+    document.addEventListener('mouseover', (e) => { if (e.target.closest(hoverSel)) cursorEl.classList.add('is-hover'); });
+    document.addEventListener('mouseout', (e) => {
+      const to = e.relatedTarget;
+      if (e.target.closest(hoverSel) && !(to && to.closest && to.closest(hoverSel))) cursorEl.classList.remove('is-hover');
+    });
+    const loop = () => {
+      cx += (tx - cx) * 0.18; cy += (ty - cy) * 0.18;
+      cursorEl.style.transform = `translate3d(${cx}px, ${cy}px, 0)`;
+      requestAnimationFrame(loop);
+    };
+    requestAnimationFrame(loop);
   }
 
   /* ── Scarcity counter + tiered state ───────────────────────────────── */
@@ -316,7 +369,8 @@
       const target = document.querySelector(id);
       if (!target) return;
       e.preventDefault();
-      target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+      if (lenis) lenis.scrollTo(target, { offset: -72 });
+      else target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
     });
   });
 })();
